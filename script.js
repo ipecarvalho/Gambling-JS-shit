@@ -1,17 +1,26 @@
+// Initialize variables
 let balance = 500;
 const costPerRoll = 20;
 const jackpotReward = 10000;
-const doubleReward = 50;
-const clickReward = 5;
-const rouletteReward = 100;
-const blackjackWinReward = 200;
-const blackjackDealerWins = 1000;
+const doubleReward = 50; // Increased reward for doubles in slots
+const clickReward = 5; // Increased amount of money for Cookie Clicker
+const rouletteReward = 100; // Increased reward for Roulette bets
+const blackjackWinReward = 200; // Increased reward for Blackjack
+const blackjackDealerWins = 1000; // Reward when dealer wins
 let clickCount = 0;
 let rouletteBetType = '';
 let rouletteBetNumber = 0;
 let deck = [];
 let playerHand = [];
 let dealerHand = [];
+
+// Show or hide tab content
+function showTab(tabId) {
+    const tabs = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+        tab.style.display = tab.id === tabId ? 'block' : 'none';
+    });
+}
 
 // Initialize deck
 function initializeDeck() {
@@ -214,7 +223,8 @@ function resetGame() {
     alert('Game reset!');
 }
 
-// Initial load
+// Initialize on window load
 window.onload = function() {
+    showTab('slots'); // Default tab, you can set to any tab you want to show by default
     loadGame();
 };
