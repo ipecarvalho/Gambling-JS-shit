@@ -1,7 +1,7 @@
 let balance = 100;
 const costPerRoll = 10;
 const jackpotReward = 100;
-const doubleReward = 20; // Reward for doubles
+const doubleReward = 20; // Reward for doubles in slots
 const clickReward = 5; // Reduced amount of money for Cookie Clicker
 let clickCount = 0;
 let rouletteBetType = '';
