@@ -1,11 +1,11 @@
 let balance = 500;
 const costPerRoll = 20;
 const jackpotReward = 10000;
-const doubleReward = 50; // Increased reward for doubles in slots
-const clickReward = 5; // Increased amount of money for Cookie Clicker
-const rouletteReward = 100; // Increased reward for Roulette bets
-const blackjackWinReward = 200; // Increased reward for Blackjack
-const blackjackDealerWins = 1000; // Reward when dealer wins
+const doubleReward = 50;
+const clickReward = 5;
+const rouletteReward = 100;
+const blackjackWinReward = 200;
+const blackjackDealerWins = 1000;
 let clickCount = 0;
 let rouletteBetType = '';
 let rouletteBetNumber = 0;
@@ -119,29 +119,31 @@ function stand() {
 
 // Spin Roulette
 function spinRoulette() {
-    if (balance < 10) {
+    if (balance < costPerRoll) {
         document.getElementById('roulette-result').textContent = "You don't have enough money to spin.";
         return;
     }
-    balance -= 10;
+    balance -= costPerRoll;
     updateBalance();
 
     const number = Math.floor(Math.random() * 38);
-    let resultText = `The wheel landed on ${number === 37 ? '00' : number}. `;
+    const colors = ['Red', 'Black', 'Green'];
+    const color = number === 37 ? 'Green' : (number % 2 === 0 ? 'Red' : 'Black');
+    let resultText = `The wheel landed on ${number === 37 ? '00' : number} (${color}). `;
 
-    if (rouletteBetType === 'red' && (number % 2 === 0 && number !== 0 && number !== 37)) {
+    if (rouletteBetType === 'red' && color === 'Red') {
         balance += rouletteReward;
         resultText += `You won $${rouletteReward} on Red!`;
-    } else if (rouletteBetType === 'black' && number % 2 !== 0 && number !== 0 && number !== 37) {
+    } else if (rouletteBetType === 'black' && color === 'Black') {
         balance += rouletteReward;
         resultText += `You won $${rouletteReward} on Black!`;
-    } else if (rouletteBetType === 'green' && (number === 0 || number === 37)) {
-        balance += rouletteReward * 2.5; // Higher reward for Green
+    } else if (rouletteBetType === 'green' && color === 'Green') {
+        balance += rouletteReward * 2.5;
         resultText += `You won $${rouletteReward * 2.5} on Green!`;
-    } else if (rouletteBetType === 'even' && number % 2 === 0 && number !== 0 && number !== 37) {
+    } else if (rouletteBetType === 'even' && number % 2 === 0 && number !== 37) {
         balance += rouletteReward;
         resultText += `You won $${rouletteReward} on Even!`;
-    } else if (rouletteBetType === 'odd' && number % 2 !== 0 && number !== 0 && number !== 37) {
+    } else if (rouletteBetType === 'odd' && number % 2 !== 0 && number !== 37) {
         balance += rouletteReward;
         resultText += `You won $${rouletteReward} on Odd!`;
     } else if (rouletteBetType === 'number' && number === rouletteBetNumber) {
@@ -191,7 +193,7 @@ function saveGame() {
 
 // Load game state from localStorage
 function loadGame() {
-    balance = parseFloat(localStorage.getItem('balance')) || 100;
+    balance = parseFloat(localStorage.getItem('balance')) || 500;
     clickCount = parseInt(localStorage.getItem('clickCount'), 10) || 0;
     rouletteBetType = localStorage.getItem('rouletteBetType') || '';
     rouletteBetNumber = parseInt(localStorage.getItem('rouletteBetNumber'), 10) || 0;
@@ -203,7 +205,7 @@ function loadGame() {
 // Reset game state
 function resetGame() {
     localStorage.clear();
-    balance = 100;
+    balance = 500;
     clickCount = 0;
     rouletteBetType = '';
     rouletteBetNumber = 0;
