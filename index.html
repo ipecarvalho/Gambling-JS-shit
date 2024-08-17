@@ -3,45 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casino Games</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Gambling Game</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Casino Games</h1>
-    <div class="tabs">
-        <div class="tab" onclick="showTab('slot-tab')">Slots</div>
-        <div class="tab" onclick="showTab('roulette-tab')">Roulette</div>
-        <div class="tab" onclick="showTab('blackjack-tab')">Blackjack</div>
-        <div class="tab" onclick="showTab('clicker-tab')">Cookie Clicker</div>
+    <!-- Tabs for different games -->
+    <div class="tab">
+        <button onclick="showTab('slots')">Slots</button>
+        <button onclick="showTab('roulette')">Roulette</button>
+        <button onclick="showTab('blackjack')">Blackjack</button>
+        <button onclick="showTab('clicker')">Cookie Clicker</button>
+        <button onclick="saveGame()">Save</button>
+        <button onclick="loadGame()">Load</button>
+        <button onclick="resetGame()">Reset</button>
     </div>
-    <div id="slot-tab" class="tab-content">
-        <button onclick="rollSlot()">Roll Slot</button>
-        <div id="slots"></div>
+
+    <!-- Slots tab content -->
+    <div id="slots" class="tab-content">
+        <button onclick="rollSlot()">Spin Slots</button>
+        <p id="slots">|  |  |</p>
         <p id="slot-result"></p>
     </div>
-    <div id="roulette-tab" class="tab-content">
-        <select id="roulette-bet-type" onchange="placeRouletteBet(this.value)">
+
+    <!-- Roulette tab content -->
+    <div id="roulette" class="tab-content">
+        <select onchange="placeRouletteBet(this.value)">
+            <option value="">Select Bet</option>
             <option value="red">Red</option>
             <option value="black">Black</option>
             <option value="green">Green</option>
             <option value="even">Even</option>
             <option value="odd">Odd</option>
-            <option value="number">Number</option>
+            <option value="number">Specific Number</option>
         </select>
-        <input type="number" id="number-bet" placeholder="Bet on a number">
+        <input id="number-bet" type="number" min="0" max="37" placeholder="Number (0-37)">
         <button onclick="spinRoulette()">Spin Roulette</button>
         <p id="roulette-result"></p>
     </div>
-    <div id="blackjack-tab" class="tab-content">
+
+    <!-- Blackjack tab content -->
+    <div id="blackjack" class="tab-content">
+        <button onclick="startBlackjack()">Start Blackjack</button>
         <button onclick="hit()">Hit</button>
         <button onclick="stand()">Stand</button>
-        <div id="blackjack-result"></div>
+        <p id="blackjack-result"></p>
     </div>
-    <div id="clicker-tab" class="tab-content">
+
+    <!-- Cookie Clicker tab content -->
+    <div id="clicker" class="tab-content">
         <button onclick="earnMoney()">Earn Money</button>
         <p>Click Count: <span id="click-count">0</span></p>
     </div>
+
     <p class="money">Balance: $<span id="balance">100</span></p>
+
     <script src="script.js"></script>
 </body>
 </html>
