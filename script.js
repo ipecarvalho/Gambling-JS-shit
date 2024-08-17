@@ -1,11 +1,11 @@
-let balance = 100;
-const costPerRoll = 10;
-const jackpotReward = 100;
+let balance = 500;
+const costPerRoll = 20;
+const jackpotReward = 10000;
 const doubleReward = 50; // Increased reward for doubles in slots
-const clickReward = 10; // Increased amount of money for Cookie Clicker
-const rouletteReward = 50; // Increased reward for Roulette bets
+const clickReward = 5; // Increased amount of money for Cookie Clicker
+const rouletteReward = 100; // Increased reward for Roulette bets
 const blackjackWinReward = 200; // Increased reward for Blackjack
-const blackjackDealerWins = 100; // Reward when dealer wins
+const blackjackDealerWins = 1000; // Reward when dealer wins
 let clickCount = 0;
 let rouletteBetType = '';
 let rouletteBetNumber = 0;
